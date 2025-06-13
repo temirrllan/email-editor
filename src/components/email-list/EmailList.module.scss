@@ -1,0 +1,12 @@
+.list{
+    margin-left: 1.5rem;
+    >div{
+        background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+  // box-shadow: 0 9px 6px rgba(255, 255, 255, 0.03);
+  border-radius: 1px solid #2e2e2e;
+  padding: 1rem;
+  margin-bottom: 2rem;
+    }
+}
