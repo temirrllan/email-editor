@@ -1,6 +1,28 @@
 {
   "emails": [
-    { "text": "a title"}
+    {
+      "text": "a title",
+      "id": "b0b4"
+    },
+    {
+      "id": "634d",
+      "text": "dwadawaw"
+    },
+    {
+      "id": "5866",
+      "text": "dad"
+    },
+    {
+      "id": "9822",
+      "text": "asasas"
+    },
+    {
+      "id": "23f4",
+      "text": "Lorem ipsum <b>dolor </b>sit amet, consectetur adipisicing elit. Quae enim corrupti sit assumenda dolores provident sequi ut, eius nulla consectetur ad omnis dolorum corporis soluta et! Sint quod in doloribus."
+    },
+    {
+      "id": "eeb0",
+      "text": "<b>hello </b>hu <i>ma </i>bunam <u>eyifiha</u>"
+    }
   ]
- 
 }

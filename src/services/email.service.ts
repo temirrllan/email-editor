@@ -2,7 +2,7 @@
     import type { IEmail } from "../pages/home/types";
 
     class EmailService {
-    URL = "http://localhost:3000/emails";
+    private URL = "http://localhost:3000/emails";
     async getEmails() {
         const { data } = await axios.get<IEmail[]>(this.URL);
         return data;

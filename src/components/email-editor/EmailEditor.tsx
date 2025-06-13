@@ -3,15 +3,31 @@ import styles from "./EmailEditor.module.scss";
 import { useRef, useState } from "react";
 import { applyStyle, type TStyle } from "./apply-style";
 import parse from 'html-react-parser'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { emailService } from "../../services/email.service";
 export function EmailEditor() {
+
+  
+
   const [text, setText] = useState(
-    `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae enim corrupti sit assumenda dolores provident sequi ut, eius nulla consectetur ad omnis dolorum corporis soluta et! Sint quod in doloribus.`
+    ''
   );
 
   const [selectionStart, setSelectionStart] = useState(0);
   const [selectionEnd, setSelectionEnd] = useState(0);
 
   const textRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const queryCLient = useQueryClient()
+
+  const {mutate, isPending} = useMutation({
+    mutationKey: ['create email'],
+    mutationFn: () => emailService.sendEmail(text),
+    onSuccess(){
+      setText('')
+      queryCLient.refetchQueries({    queryKey: ["email list"]})
+    }
+  })
 
   const updateSelection = () => {
     if(!textRef.current) return;
@@ -39,9 +55,12 @@ export function EmailEditor() {
 
   return (
     <div>
-      <h1>Email editor</h1><div className={styles.preview}>
+      <h1>Email editor</h1>
+      {text&&<div className={styles.preview}>
+        
           {parse(text )}
-        </div>
+        </div>}
+      
       <div className={styles.card}>
         
         <textarea
@@ -70,7 +89,7 @@ export function EmailEditor() {
               <Underline size={17} />
             </button>
           </div>
-          <button>Send Now</button>
+          <button disabled={isPending} onClick={() => mutate()}>Send Now</button>
         </div>
       </div>
     </div>
